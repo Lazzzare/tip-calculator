@@ -26,7 +26,7 @@ function App() {
         type="number"
         value={people}
         placeholder="number of people"
-        onChange={(e) => setPeople(e.target.valueAsNumber)}
+        onChange={(e) => setPeople(Math.trunc(e.target.valueAsNumber))}
       />
       <div>tip amount / person :{showTip ? tipAmount : "0.00"}</div>
       <div>total / person: {showTotal ? totalPerPerson : "0.00"}</div>
