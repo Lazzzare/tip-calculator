@@ -7,25 +7,29 @@ function App() {
   const [tip, setTip] = useState<number>(0);
 
   const tipAmount = ((bill * tip) / people).toFixed(2);
+  const totalPerPerson = ((bill * (1 + tip)) / people).toFixed(2);
+  const showTip = !(tipAmount === "NaN" || tipAmount === "Infinity");
+  const showTotal = !(
+    totalPerPerson === "NaN" || totalPerPerson === "Infinity"
+  );
 
   return (
     <div className="App">
-      <div>Bill: {bill}</div>
-      <div>People: {people}</div>
-      <div>Tip: {tip}</div>
       <input
         type="number"
+        value={bill}
         placeholder="bill"
         onChange={(e) => setBill(e.target.valueAsNumber)}
       />
       <button onClick={() => setTip(0.1)}>10%</button>
       <input
         type="number"
+        value={people}
         placeholder="number of people"
         onChange={(e) => setPeople(e.target.valueAsNumber)}
       />
-      <div>tip amount / person : {tipAmount}</div>
-      <div>total / person: {((bill * (1 + tip)) / people).toFixed(2)}</div>
+      <div>tip amount / person :{showTip ? tipAmount : "0.00"}</div>
+      <div>total / person: {showTotal ? totalPerPerson : "0.00"}</div>
     </div>
   );
 }
